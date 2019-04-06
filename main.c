@@ -1,47 +1,64 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-struct location
-        {
-        char name[50];
-//        int cost;
-//        struct location *connected;
-        };
-int main() {
-    char ch='n';
-    char c[1000];
-    int n=5;
-    FILE *fp;
-    fp=fopen("master.txt","at+");
-    struct location city;
-    struct location p;
 
-    n++;
-    while(n--)
+struct city {
+    char cityname[20];
+    int n;
+};
+
+//struct city* reconstruction(){}
+
+void main () {
+    int n,t;
+    struct city input;
+    struct city *node;
+    FILE *outfile,*infile;
+
+    // open Accounts file for writing
+//    outfile = fopen("city.bin", "wb");
+//    if (outfile == NULL) {
+//        fprintf(stderr, "\nError opening accounts.dat\n\n");
+//        exit(1);
+//    }
+//
+//    // instructions to user
+//    printf("Enter \"stop\" for First Name to end program.");
+//
+//    // endlessly read from keyboard and write to file
+//    // prompt user
+//    printf("\nCity name: ");
+//    scanf("%s", input.cityname);
+//    // exit if no name provided
+//    if (strcmp(input.cityname, "stop") == 0)
+//        exit(1);
+//    // continue reading from keyboard
+//    printf("Number of connected cities : ");
+//    scanf("%d", &n);
+//    input.n=n;
+//    fwrite(&input, sizeof(struct city *), 1, outfile);
+//    while (n--) {
+//        node = (struct city *) malloc(sizeof(struct city));
+//        printf("Enter connected city name: ");
+//        scanf("%s", node->cityname);
+//        printf("Enter cost from source city: ");
+//        scanf("%d", &(node->n));
+//        fwrite(node, sizeof(struct city *), 1, outfile);
+//        printf ("City name = %s\nCost = %d\n",node->cityname,node->n);
+//    }
+//    fclose(outfile);
+    infile = fopen ("city.bin","rb");
+    if (infile == NULL)
     {
-//        fscanf(fp,"%[^\n]", c);
-//        printf("%s",c);
-        while (fgets(c, sizeof(c), fp)) {
-            /* note that fgets don't strip the terminating \n, checking its
-               presence would allow to handle lines longer that sizeof(line) */
-            printf("%s", fp);
-        }
+        fprintf(stderr, "\nError opening accounts.dat\n\n");
+        exit (1);
     }
 
-//        do
-//    {
-//        printf("\nEnter Name : ");
-//        scanf("%s",city.name);
-//        strcat(city.name,"\n");
-//        fprintf(fp,"%s",city.name);
-////
-////        printf("\nDo you want to add another data (y/n) : ");
-////
-////        scanf("%c",&ch);
-//
-//    }while(n--);
 
-    fclose(fp);
-//    printf("Data Written succesfully\n");
-
-    return 0;
+    while (fread (&input, sizeof(struct city), 1, infile))
+    {
+        printf("City name = %s\n",input.cityname);
+        printf("Cost = %d\n",input.n);
+    }
+        fclose(infile);
 }
