@@ -1,0 +1,1 @@
+D:/Programs/Cygwin/bin/gcc.exe -g  -Wl,--enable-auto-import CMakeFiles/GroupOneProject.dir/main.c.o  -o GroupOneProject.exe -Wl,--out-implib,libGroupOneProject.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
